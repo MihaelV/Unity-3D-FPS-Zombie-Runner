@@ -4,25 +4,19 @@ using UnityEngine;
 
 public class Helicopter : MonoBehaviour {
 
-    public AudioClip zvuk;
-    private AudioSource izvor;
+
     private bool called = false;
+    private Rigidbody rigidbodyy;
+
 
 	// Use this for initialization
-	void Start () {
-        izvor = GetComponent<AudioSource>();
+	void Start () {        
+        rigidbodyy = GetComponent<Rigidbody>();
 	}
-	
-	// Update is called once per frame
-	void Update () {
-        if (Input.GetButton("CallHeli") && !called)
-        {
-            called = true;
-            izvor.clip = zvuk;
-            izvor.Play();
 
-        }
-
-        
-	}
+    void OnDispatchHelicopter()
+    {                    
+        rigidbodyy.velocity = new Vector3(0, 0, 50f); //dajemo helikopteru brzinu od 50m po sekudni
+        called = true;
+    }
 }

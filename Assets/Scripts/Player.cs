@@ -5,27 +5,31 @@ using UnityEngine;
 public class Player : MonoBehaviour {
 
     public Transform playerSpawnPoints; // roditelj spawn pointova
-    public bool reSpawn = false;
-
+    public GameObject flare;
+    
+    private bool reSpawn = false;
     private Transform[] spawnPoints;
-    private bool lastToggle = false;
+    private bool lastRespawnToggle = false;
+
+
 
 	// Use this for initialization
 	void Start () {
         spawnPoints = playerSpawnPoints.GetComponentsInChildren<Transform>();
-        print(spawnPoints.Length);
+        //print(spawnPoints.Length);       
+
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if(lastToggle != reSpawn) // obadvoje false na početku
+		if(lastRespawnToggle != reSpawn) // obadvoje false na početku
         {
             ReSpawn();
             reSpawn = false;
         }
         else
         {
-            lastToggle = reSpawn;
+            lastRespawnToggle = reSpawn;
         }
 	}
 
@@ -35,5 +39,17 @@ public class Player : MonoBehaviour {
     {
         int i = Random.Range(1, spawnPoints.Length); // počinjemo od 1 zato jer je element u arrayu na indexu 0 parent, childreni pocinju od 1 
         transform.position = spawnPoints[i].transform.position;  // postavljamo trenutni game object a to je Player na random poziciju tj jednu od 3 random izabranih spawn pointova
+    }
+
+
+    void OnFindClearArea()
+    {
+        Invoke("DropFlare", 3f);
+    }
+
+
+    void DropFlare()
+    {
+        Instantiate(flare, transform.position, transform.rotation);
     }
 }
