@@ -1,16 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour {
 
     public Transform playerSpawnPoints; // roditelj spawn pointova
     public GameObject flare;
+    //public Text mojtext;
     
-    private bool reSpawn = false;
+    public  bool reSpawn = false;
     private Transform[] spawnPoints;
     private bool lastRespawnToggle = false;
-
+    private Vector3 heliposition;
 
 
 	// Use this for initialization
@@ -31,7 +33,16 @@ public class Player : MonoBehaviour {
         {
             lastRespawnToggle = reSpawn;
         }
+
+
+
+        //if(transform.position.y <= 11f)
+        //{
+        //    mojtext.text = "Gotovo";
+        //}
 	}
+
+  
 
 
 
@@ -51,5 +62,13 @@ public class Player : MonoBehaviour {
     void DropFlare()
     {
         Instantiate(flare, transform.position, transform.rotation);
+        heliposition = transform.position;  
+       
+    
+    }
+
+    public Vector3 FlarePosition()
+    {
+        return heliposition;
     }
 }

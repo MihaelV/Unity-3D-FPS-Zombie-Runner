@@ -31,6 +31,11 @@ public class ClearArea : MonoBehaviour
         }
         numberObjectsCollided++;
         timeSinceLastTrigger = 0f;
+
+        //if(other.gameObject.name == "Helicopter")
+        //{
+        //    print("dela");
+        //}
     }
 
     private void OnTriggerExit(Collider other)
