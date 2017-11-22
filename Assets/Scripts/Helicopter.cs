@@ -46,7 +46,8 @@ public class Helicopter : MonoBehaviour {
     {
         if (other.gameObject.name == "Player")
         {
-            myText.text = "Load new scene!";
+            //SendMessageUpwards("Win",0);
+            player.Win(0);
         }
     }
 }
